@@ -1,0 +1,20 @@
+const { chromium } = require('playwright'); // Import the browser runner
+
+async function run() {
+  // 1. Launch the BROWSER (Opens the actual Chrome application)
+  const browser = await chromium.launch({ headless: false });
+
+  // 2. Create a CONTEXT (Opens a brand-new, clean Incognito Session)
+  const context = await browser.newContext();
+
+  // 3. Open a PAGE (Opens a single tab inside that Incognito Session)
+  const page = await context.newPage();
+
+  // Now you can instruct the page to do things!
+  await page.goto('https://example.com');
+  
+  // Close the browser when finished
+  await browser.close();
+}
+
+run();
